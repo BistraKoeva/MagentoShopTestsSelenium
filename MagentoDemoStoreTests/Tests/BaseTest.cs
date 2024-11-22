@@ -22,6 +22,8 @@ namespace MagentoDemoStoreTestsPOM.Tests
         [TearDown]
         public void TearDown()
         {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("window.localStorage.clear();");
             driver.Quit();
             driver.Dispose();   
         }

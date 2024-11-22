@@ -28,6 +28,9 @@ namespace MagentoDemoStoreTestsPOM.Pages
         public static string PasswordConfirmationFieldXpath = "//input[@id='password-confirmation']";
         public IWebElement PasswordConfirmationField => driver.FindElement(By.XPath(PasswordConfirmationFieldXpath));
 
+        public static string ShowPasswordCheckBoxXpath = "//input[@id='show-password']";
+        public IWebElement ShowPasswordCheckBox => driver.FindElement(By.XPath(ShowPasswordCheckBoxXpath));
+
         public static string CreateAccountButtonXpath = "//button[@id='send2' and @class='action submit primary']";
         public IWebElement CreateAccountButton => driver.FindElement(By.XPath(CreateAccountButtonXpath));
 
@@ -73,7 +76,10 @@ namespace MagentoDemoStoreTestsPOM.Pages
             PasswordConfirmationField.Clear();
             PasswordConfirmationField.SendKeys(confirmPassword);
 
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(ShowPasswordCheckBoxXpath)));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(BasePage.WelcomeMessageNotLoggedInXpath)));
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(CreateAccountButtonXpath)));
+            actions.ScrollToElement(CreateAccountButton).Perform();
             CreateAccountButton.Click();
         }
 
@@ -84,6 +90,8 @@ namespace MagentoDemoStoreTestsPOM.Pages
             var myAccountPage = new MyAccountPage(driver);
 
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(MyAccountPage.TitleXpath)));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(MyAccountPage.NewAccountSuccessMessageXpath)));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(BasePage.WelcomeMessageLoggedInXpath)));
 
             return myAccountPage;
         }

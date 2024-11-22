@@ -19,7 +19,10 @@ namespace MagentoDemoStoreTestsPOM.Pages
 
         public static string PasswordFieldXpath = "//input[@id='password' and @name='login[password]']";
         public IWebElement PasswordField => driver.FindElement(By.XPath(PasswordFieldXpath));
-        
+
+        public static string ShowPasswordCheckBoxXpath = "//input[@id='show-password']";
+        public IWebElement ShowPasswordCheckBox => driver.FindElement(By.XPath(ShowPasswordCheckBoxXpath));
+
         public static string SignInButtonXpath = "//button[@id='send2' and @class='action login primary']";
         public IWebElement SignInButton => driver.FindElement(By.XPath(SignInButtonXpath));
 
@@ -27,15 +30,13 @@ namespace MagentoDemoStoreTestsPOM.Pages
         public static string EmailErrorMessageXpath = "//div[@id='email-error']";
         public IWebElement EmailErrorMessage => driver.FindElement(By.XPath(EmailErrorMessageXpath));
 
-        public static string PassErrorMessageXpath = "//div[@id='pass-error']";
+        public static string PassErrorMessageXpath = "//div[@id='password-error']";
         public IWebElement PassErrorMessage => driver.FindElement(By.XPath(PassErrorMessageXpath));
 
         public static string WrongCredentialsErrorMessageXpath = "//div[@class='message-error error message']//div";
         public IWebElement WrongCredentialsErrorMessage => driver.FindElement(By.XPath(WrongCredentialsErrorMessageXpath));
 
-        public static string ShowPasswordCheckBoxXpath = "//input[@id='show-password']";
-        public IWebElement ShowPasswordCheckBox => driver.FindElement(By.XPath(ShowPasswordCheckBoxXpath));
-
+       
 
         private void FillAndSubmitSignInForm(string email, string password)
         {
@@ -69,15 +70,7 @@ namespace MagentoDemoStoreTestsPOM.Pages
             return myAccountPage;
         }
 
-        public void SignInWithInvalidCredentials(string email, string password)
-        {
-            FillAndSubmitSignInForm(email, password);
-
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(WrongCredentialsErrorMessageXpath)));
-
-        }
-
-        public void SignInWithInvalidInput(string email, string password)
+        public void SignInWithEmptyInput(string email, string password)
         {
             FillAndSubmitSignInForm(email, password);
 
@@ -90,11 +83,21 @@ namespace MagentoDemoStoreTestsPOM.Pages
             {
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(PassErrorMessageXpath)));
             }
+        }
 
-            if (email != "" && password != "")
-            {
-                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(EmailErrorMessageXpath)));
-            }
+        public void SignInWithInvalidEmail(string email, string password)
+        {
+            FillAndSubmitSignInForm(email, password);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(EmailErrorMessageXpath)));
+
+        }
+
+        public void SignInWithWrongCredentials(string email, string password)
+        {
+            FillAndSubmitSignInForm(email, password);
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(WrongCredentialsErrorMessageXpath)));
+
         }
     }
 }

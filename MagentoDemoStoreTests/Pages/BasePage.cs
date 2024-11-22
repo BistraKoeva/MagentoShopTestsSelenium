@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace MagentoDemoStoreTestsPOM.Pages
@@ -7,6 +8,7 @@ namespace MagentoDemoStoreTestsPOM.Pages
     {
         protected IWebDriver driver;
         protected WebDriverWait wait;
+        protected Actions actions;
 
         protected static readonly string BaseUrl = "https://magento-187465-0.cloudclusters.net";
 
@@ -14,6 +16,7 @@ namespace MagentoDemoStoreTestsPOM.Pages
         {
             this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            actions = new Actions(driver);
         }
 
         public static string WelcomeMessageLoggedInXpath = "//div[@class='panel header']//span[@class='logged-in']";
