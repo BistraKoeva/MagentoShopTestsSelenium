@@ -14,7 +14,7 @@ namespace MagentoDemoStoreTestsPOM.Tests
 
             Assert.IsNotNull(myAccountPage.Title, "The page title 'My Account' should be displayed.");
             Assert.That(driver.Url, Is.EqualTo(MyAccountPage.Url), "The user should be redirected to the My account page.");
-           // Assert.That(myAccountPage.WelcomeMessageLoggedIn.Text, Is.EqualTo("Welcome, Bistra Koeva!"), "The user should be signed-in and the welcome message should be present.");
+            //Assert.That(myAccountPage.WelcomeMessageLoggedIn.Text, Is.EqualTo("Welcome, Bistra Koeva!"), "The user should be signed-in and the welcome message should be present."); //This assert is very interesting because of the way the string is populated. We should try to make it work.
         }
 
         //Some of the tests below don't pass in some cases because of Chrome HTML5 interactive form validation messages

@@ -2,13 +2,8 @@
 
 namespace MagentoDemoStoreTestsPOM.Pages
 {
-    public class HomePage : BasePage
+    public class HomePage(IWebDriver driver) : BasePage(driver)
     {
-        public HomePage(IWebDriver driver) : base(driver)
-        {
-            
-        }
-
         public static string Url => BaseUrl + "/";
 
     }

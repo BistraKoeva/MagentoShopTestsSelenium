@@ -3,14 +3,8 @@ using SeleniumExtras.WaitHelpers;
 
 namespace MagentoDemoStoreTestsPOM.Pages
 {
-    public class SignInPage : BasePage
+    public class SignInPage(IWebDriver driver) : BasePage(driver)
     {
-
-        public SignInPage(IWebDriver driver) : base(driver)
-        {
-            
-        }
-
         public static string Url => BaseUrl + "/customer/account/login/";
 
         // Fields in the Sign-in form
@@ -35,8 +29,6 @@ namespace MagentoDemoStoreTestsPOM.Pages
 
         public static string WrongCredentialsErrorMessageXpath = "//div[@class='message-error error message']//div";
         public IWebElement WrongCredentialsErrorMessage => driver.FindElement(By.XPath(WrongCredentialsErrorMessageXpath));
-
-       
 
         private void FillAndSubmitSignInForm(string email, string password)
         {

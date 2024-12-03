@@ -3,13 +3,8 @@ using SeleniumExtras.WaitHelpers;
 
 namespace MagentoDemoStoreTestsPOM.Pages
 {
-    public class MyAccountPage : BasePage
+    public class MyAccountPage(IWebDriver driver) : BasePage(driver)
     {
-        public MyAccountPage(IWebDriver driver) : base(driver)
-        {
-            
-        }
-
         public static string Url => BaseUrl + "/customer/account/";
 
 

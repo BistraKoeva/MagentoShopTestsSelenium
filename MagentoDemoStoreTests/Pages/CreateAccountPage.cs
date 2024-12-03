@@ -3,12 +3,8 @@ using SeleniumExtras.WaitHelpers;
 
 namespace MagentoDemoStoreTestsPOM.Pages
 {
-    public class CreateAccountPage : BasePage
+    public class CreateAccountPage(IWebDriver driver) : BasePage(driver)
     {
-        public CreateAccountPage(IWebDriver driver) : base(driver)
-        {
-            
-        }
 
         // Fields in the Create an account form
         public static string Url => BaseUrl + "/customer/account/create/";
@@ -144,9 +140,8 @@ namespace MagentoDemoStoreTestsPOM.Pages
         {
             FillAndSubmitCreateAccountForm(firstName, lastName, email, password, confirmPassword);
 
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(PasswordConfirmationErrorMessageXpath)));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(PasswordConfirmationErrorMessageXpath)));    
         }
-
 
         public string GenerateUniqueEmail()
         {
